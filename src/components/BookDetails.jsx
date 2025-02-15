@@ -12,7 +12,6 @@ export default function BookDetails() {
     useEffect(() => {fetch(`https://book-swap-api.dev.io-academy.uk/api/books/${id}`)
     .then(res => res.json())
     .then(data => {
-        console.log(data)
         setBookData(data.data);
         setBookGenre(data.data.genre.name);
     })}, [])

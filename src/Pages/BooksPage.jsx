@@ -9,7 +9,6 @@ export default function BooksPage({isClaimed}) {
     useEffect(() => {fetch(`https://book-swap-api.dev.io-academy.uk/api/books?claimed=${isClaimed}`)
     .then(res => res.json())
     .then(data => {
-        // console.log(data.data)
         setBooks(data.data);
     })},[])
 
