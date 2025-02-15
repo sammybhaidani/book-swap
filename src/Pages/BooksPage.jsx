@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import SingleBook from "../components/SingleBook";
+import { Link } from "react-router-dom";
 
 export default function BooksPage({isClaimed}) {
 
@@ -8,17 +9,15 @@ export default function BooksPage({isClaimed}) {
     useEffect(() => {fetch(`https://book-swap-api.dev.io-academy.uk/api/books?claimed=${isClaimed}`)
     .then(res => res.json())
     .then(data => {
-        console.log(data.data)
+        // console.log(data.data)
         setBooks(data.data);
     })},[])
 
 
     return (
-
        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3">
         {books.map(book => (
-            <SingleBook 
-            key={book.id}
+            <SingleBook key={book.id}
             img={book.image}
             title={book.title}
             author={book.author}
