@@ -17,8 +17,8 @@ export default function BookDetails() {
     })}, [])
 
     return (
-        <div className="flex flex-col gap-3 p-3 items-center sm:flex-row sm:items-start sm:gap-5">
-            <div>
+        <div className="flex flex-col gap-3 p-3 items-center mx-auto sm:flex-row sm:items-start sm:gap-5 sm:max-w-4xl">
+            <div className="sm:basis-7xl">
                 <img src={bookData.image} alt="" />
             </div>
             <div className="flex flex-col gap-3 items-center sm:items-start">
