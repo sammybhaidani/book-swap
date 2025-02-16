@@ -10,7 +10,7 @@ export default function BooksPage({isClaimed}) {
     .then(res => res.json())
     .then(data => {
         setBooks(data.data);
-    })},[])
+    })},[isClaimed])
 
 
     return (
