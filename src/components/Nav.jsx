@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import H1 from "./atoms/H1";
-import NavLink from "./NavLink";
+import NavItem from "./NavItem";
 
 export default function Nav() {
     return (
@@ -11,8 +11,8 @@ export default function Nav() {
                 </Link>
             </div>
             <div className="flex gap-5 justify-center">
-                <NavLink text={"Available books"} address={"/"}/>
-                <NavLink text={"Claimed books"} address={"/claimed"}/>
+                <NavItem text={"Available books"} address={"/"}/>
+                <NavItem text={"Claimed books"} address={"/claimed"}/>
             </div>
         </nav>
     )
