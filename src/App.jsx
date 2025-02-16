@@ -9,7 +9,7 @@ export default function App() {
             <Nav/>
             <Routes>
                 <Route path="/" element={<BooksPage isClaimed={0}/>}/>
-                <Route path="/" element={<BooksPage isClaimed={1}/>}/>
+                <Route path="/claimed" element={<BooksPage isClaimed={1}/>}/>
                 <Route path="/books/:id" element={<BookDetails/>} />
             </Routes>
         </BrowserRouter>
