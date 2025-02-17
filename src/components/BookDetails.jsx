@@ -22,6 +22,10 @@ export default function BookDetails() {
         setPerson(name);
     }
 
+    function handleBookCount(bookCount) {
+        setBookReviewCount(bookCount);
+    }
+
     function calculateBookRating(book) {
         const sumRatings = book.reduce((acc, currentValue) => acc + currentValue.rating, 0);
         const averageRating = (sumRatings / book.length).toFixed(1);
@@ -38,7 +42,7 @@ export default function BookDetails() {
         setBookReviewCount(data.data.reviews.length);
         calculateBookRating(data.data.reviews);
         console.log(data.data.reviews);
-    })}, [])
+    })}, [bookReviewCount])
 
     return (
         <div className="flex flex-col gap-3 p-3 items-center mx-auto sm:flex-row sm:items-start sm:gap-5 sm:max-w-4xl">
@@ -58,7 +62,7 @@ export default function BookDetails() {
                 <p>{bookData.blurb}</p>
                 <section id="reviews" className="flex flex-col gap-4 mt-3">
                 <H2 text={"Reviews"}/>
-                <ReviewForm/>
+                <ReviewForm id={id} handleReviewCount={handleBookCount} reviewCount={bookReviewCount}/>
                 {bookReviews.map(review => (
                     <BookReview 
                     key={review.id}
