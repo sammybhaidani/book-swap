@@ -37,7 +37,7 @@ export default function BookDetails() {
                 <p>{genre}</p>
                 {person ? <p>{`Claimed by ${person}`}</p> 
                 : <ClaimForm id={id} handlePerson={handlePerson}/>}
-                {person && <ReturnForm name={person}/>}
+                {person && <ReturnForm id={id} name={person} handlePerson={handlePerson}/>}
                 <p>{bookData.blurb}</p>
             </div>
         </div>
