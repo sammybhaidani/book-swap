@@ -1,5 +1,5 @@
 export default function H2({text}) {
     return (
-        <h2>{text}</h2>
+        <h2 className="text-xl">{text}</h2>
     )
 }
