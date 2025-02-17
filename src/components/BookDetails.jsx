@@ -58,6 +58,7 @@ export default function BookDetails() {
                 <p>{bookData.blurb}</p>
                 <section id="reviews" className="flex flex-col gap-4 mt-3">
                 <H2 text={"Reviews"}/>
+                <ReviewForm/>
                 {bookReviews.map(review => (
                     <BookReview 
                     key={review.id}
