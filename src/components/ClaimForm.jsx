@@ -6,11 +6,8 @@ export default function ClaimForm({id, handlePerson}) {
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-
     const [nameError, setNameError] = useState("");
-    // const [emailErrors, setEmailErrors] = useState([]);
     const [emailError, setEmailError] = useState("");
-    // const [requireEmailError, setRequireEmailError] = useState("");
    
     const data ={
         name: name,
@@ -43,15 +40,38 @@ export default function ClaimForm({id, handlePerson}) {
             
             data.errors?.name ? setNameError(data.errors.name) : setNameError("");
 
-            if (data.errors?.email) {
-                email ? setEmailError(data.errors.email[0]) : setEmailError(data.errors.email[1]);
+            let validName = false;
+
+            if(data.errors?.name) {
+                setNameError(data.errors.name);
             } else {
-                setEmailError("");
+                setNameError("");
+                validName = true;
             }
 
-            if (!(data.errors?.name && data.errors?.email)) {
-                handlePerson(name);
+            // if (data.errors?.email) {
+            //     email ? setEmailError(data.errors.email[0]) : setEmailError(data.errors.email[1]);
+            // } else {
+            //     setEmailError("");
+            // }
+
+            // if (!(data.errors?.name && data.errors?.email)) {
+            //     handlePerson(name);
+            // }
+
+            let validEmail = false;
+            
+            if (data.errors?.email && email) {
+                setEmailError(data.errors.email[0])
+            } else if(data.errors?.email && !email) {
+                setEmailError(data.errors.email[1]);
+            } else {
+                validEmail = true;
             }
+
+            if(validName && validEmail) {
+                handlePerson(name)
+            } 
           
         })
     }
