@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import H1 from "./atoms/H1";
 import ClaimForm from "./ClaimForm";
+import ReturnForm from "./ReturnForm";
 
 export default function BookDetails() {
 
@@ -34,7 +35,9 @@ export default function BookDetails() {
                 <p>{bookData.year}</p>
                 <p>{bookData.page_count}</p>
                 <p>{genre}</p>
-                {person ?  `Claimed by ${person}` : <ClaimForm id={id} handlePerson={handlePerson}/>}
+                {person ? <p>{`Claimed by ${person}`}</p> 
+                : <ClaimForm id={id} handlePerson={handlePerson}/>}
+                {person && <ReturnForm name={person}/>}
                 <p>{bookData.blurb}</p>
             </div>
         </div>
