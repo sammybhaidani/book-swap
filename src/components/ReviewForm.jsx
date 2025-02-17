@@ -3,7 +3,7 @@ import Input from "./atoms/Input";
 
 export default function ReviewForm() {
     return (
-        <div className="border rounded p-3 flex flex-col gap-3 mx-auto w-full">
+        <form className="border rounded p-3 flex flex-col gap-3 mx-auto w-full">
             <H3 text={"Want to review this book?"}/>
             <Input label={"Name"} placeholder={"Name"}/>
             <div>
@@ -18,7 +18,6 @@ export default function ReviewForm() {
             </div>
             <textarea className="border rounded p-1" rows={"5"} cols={"33"} placeholder="Review"/>
             <Input type="submit" value={"Review"}/>
-
-        </div>
+        </form>
     )
 }
