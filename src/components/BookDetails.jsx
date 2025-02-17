@@ -50,7 +50,7 @@ export default function BookDetails() {
                 <p>{bookData.year}</p>
                 <p>{bookData.page_count}</p>
                 <p>{genre}</p>
-                <p><Link to={"#reviews"}> {bookReviewCount} {bookReviewCount == 1 ? 'review' : 'reviews'}</Link> {`- ${bookRating}/5 stars`}</p>
+                <p> <a className="underline" href="#reviews">{bookReviewCount} {bookReviewCount == 1 ? 'review' : 'reviews'}</a> {`- ${bookRating}/5 stars`}</p>
                 {person ? <p>{`Claimed by ${person}`}</p> 
                 : <ClaimForm id={id} handlePerson={handlePerson}/>}
                 {person && <ReturnForm id={id} name={person} handlePerson={handlePerson}/>}
