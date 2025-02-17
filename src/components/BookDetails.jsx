@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import H1 from "./atoms/H1";
 import ClaimForm from "./ClaimForm";
 import ReturnForm from "./ReturnForm";
@@ -15,9 +15,16 @@ export default function BookDetails() {
     const [person, setPerson] = useState('');
     const [bookReviews, setBookReviews] = useState([]);
     const [bookReviewCount, setBookReviewCount] = useState(0);
+    const [bookRating, setBookRating] = useState(null);
 
     function handlePerson(name) {
         setPerson(name);
+    }
+
+    function calculateBookRating(book) {
+        const sumRatings = book.reduce((acc, currentValue) => acc + currentValue.rating, 0);
+        const averageRating = (sumRatings / book.length).toFixed(1);
+        setBookRating(averageRating);
     }
 
     useEffect(() => {fetch(`https://book-swap-api.dev.io-academy.uk/api/books/${id}`)
@@ -28,6 +35,7 @@ export default function BookDetails() {
         setPerson(data.data.claimed_by_name);
         setBookReviews(data.data.reviews);
         setBookReviewCount(data.data.reviews.length);
+        calculateBookRating(data.data.reviews);
         console.log(data.data.reviews);
     })}, [])
 
@@ -42,11 +50,12 @@ export default function BookDetails() {
                 <p>{bookData.year}</p>
                 <p>{bookData.page_count}</p>
                 <p>{genre}</p>
-                <p>{`${bookReviewCount} ${bookReviewCount == 1 ? 'review' : 'reviews'}`}</p>
+                <p><Link to={"#reviews"}> {bookReviewCount} {bookReviewCount == 1 ? 'review' : 'reviews'}</Link> {`- ${bookRating}/5 stars`}</p>
                 {person ? <p>{`Claimed by ${person}`}</p> 
                 : <ClaimForm id={id} handlePerson={handlePerson}/>}
                 {person && <ReturnForm id={id} name={person} handlePerson={handlePerson}/>}
                 <p>{bookData.blurb}</p>
+                <section id="reviews">
                 <H2 text={"Reviews"}/>
                 {bookReviews.map(review => (
                     <BookReview 
@@ -55,6 +64,7 @@ export default function BookDetails() {
                     rating={review.rating}
                     review={review.review}/>
                 ))}
+                </section>
             </div>
         </div>
     )
