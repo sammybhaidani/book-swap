@@ -14,6 +14,7 @@ export default function BookDetails() {
     const [genre, setBookGenre] = useState('');
     const [person, setPerson] = useState('');
     const [bookReviews, setBookReviews] = useState([]);
+    const [bookReviewCount, setBookReviewCount] = useState(0);
 
     function handlePerson(name) {
         setPerson(name);
@@ -26,6 +27,7 @@ export default function BookDetails() {
         setBookGenre(data.data.genre.name);
         setPerson(data.data.claimed_by_name);
         setBookReviews(data.data.reviews);
+        setBookReviewCount(data.data.reviews.length);
         console.log(data.data.reviews);
     })}, [])
 
@@ -40,6 +42,7 @@ export default function BookDetails() {
                 <p>{bookData.year}</p>
                 <p>{bookData.page_count}</p>
                 <p>{genre}</p>
+                <p>{`${bookReviewCount} ${bookReviewCount == 1 ? 'review' : 'reviews'}`}</p>
                 {person ? <p>{`Claimed by ${person}`}</p> 
                 : <ClaimForm id={id} handlePerson={handlePerson}/>}
                 {person && <ReturnForm id={id} name={person} handlePerson={handlePerson}/>}
