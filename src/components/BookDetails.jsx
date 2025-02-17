@@ -55,7 +55,7 @@ export default function BookDetails() {
                 : <ClaimForm id={id} handlePerson={handlePerson}/>}
                 {person && <ReturnForm id={id} name={person} handlePerson={handlePerson}/>}
                 <p>{bookData.blurb}</p>
-                <section id="reviews">
+                <section id="reviews" className="flex flex-col gap-4 mt-3">
                 <H2 text={"Reviews"}/>
                 {bookReviews.map(review => (
                     <BookReview 
