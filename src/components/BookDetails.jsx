@@ -5,6 +5,7 @@ import ClaimForm from "./ClaimForm";
 import ReturnForm from "./ReturnForm";
 import H2 from "./atoms/H2";
 import BookReview from "./BookReview";
+import ReviewForm from "./ReviewForm";
 
 export default function BookDetails() {
 
@@ -48,7 +49,7 @@ export default function BookDetails() {
                 <H1 text={bookData.title}/>
                 <p>{bookData.author}</p>
                 <p>{bookData.year}</p>
-                <p>{bookData.page_count}</p>
+                <p>{`${bookData.page_count} pages`}</p>
                 <p>{genre}</p>
                 <p> <a className="underline" href="#reviews">{bookReviewCount} {bookReviewCount == 1 ? 'review' : 'reviews'}</a> {`- ${bookRating}/5 stars`}</p>
                 {person ? <p>{`Claimed by ${person}`}</p> 
