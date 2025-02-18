@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import SingleBook from "../components/SingleBook";
-import { Link } from "react-router-dom";
 
 export default function BooksPage({isClaimed}) {
 
