@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import SingleBook from "../components/SingleBook";
+import GenreFilter from "../components/GenreFilter";
 
 export default function BooksPage({isClaimed}) {
 
@@ -11,18 +12,21 @@ export default function BooksPage({isClaimed}) {
         setBooks(data.data);
     })},[isClaimed])
 
-
     return (
-       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3">
-        {books.map(book => (
-            <SingleBook key={book.id}
-            img={book.image}
-            title={book.title}
-            author={book.author}
-            genre={book.genre.name}
-            id={book.id}/>
-        ))}
+        <div className="p-3">
+            
+        <GenreFilter/>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {books.map(book => (
+                <SingleBook key={book.id}
+                img={book.image}
+                title={book.title}
+                author={book.author}
+                genre={book.genre.name}
+                id={book.id}/>
+            ))}
+            </div>
         </div>
-       
     )
 }
