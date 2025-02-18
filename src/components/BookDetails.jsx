@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import H1 from "./atoms/H1";
 import ClaimForm from "./ClaimForm";
 import ReturnForm from "./ReturnForm";
@@ -22,8 +22,8 @@ export default function BookDetails() {
         setPerson(name);
     }
 
-    function handleBookCount(bookCount) {
-        setBookReviewCount(bookCount);
+    function handleReviewSubmit() {
+        setBookReviewCount(bookReviewCount + 1);
     }
 
     function calculateBookRating(book) {
@@ -41,7 +41,6 @@ export default function BookDetails() {
         setBookReviews(data.data.reviews);
         setBookReviewCount(data.data.reviews.length);
         calculateBookRating(data.data.reviews);
-        console.log(data.data.reviews);
     })}, [bookReviewCount])
 
     return (
@@ -62,7 +61,7 @@ export default function BookDetails() {
                 <p>{bookData.blurb}</p>
                 <section id="reviews" className="flex flex-col gap-4 mt-3">
                 <H2 text={"Reviews"}/>
-                <ReviewForm id={id} handleReviewCount={handleBookCount} reviewCount={bookReviewCount}/>
+                <ReviewForm id={id} handleReviewCount={handleReviewSubmit}/>
                 {bookReviews.map(review => (
                     <BookReview 
                     key={review.id}
